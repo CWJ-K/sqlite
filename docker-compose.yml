@@ -2,5 +2,17 @@ version: "3.8"
 services:
   app :
     build: ./app/
+    network_mode: service:db
+    volumes:
+      - .:/code
   db:
-    build: ./database/
+    image: nouchka/sqlite3:latest
+    stdin_open: true
+    tty: true
+    volumes:
+      - db/:/root/db/
+    
+  
+
+volumes:
+  db:
